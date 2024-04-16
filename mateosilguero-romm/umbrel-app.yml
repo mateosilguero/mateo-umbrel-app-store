@@ -1,29 +1,4 @@
 manifestVersion: 1
-id: mateosilguero-room
-category: files
-name: RomM
-icon: https://raw.githubusercontent.com/zurdi15/romm/a700aa98429b0ec96ec8d9d32ffa01c989d3569f/romm.svg
-version: "1.10.0"
-tagline: Rom Manager.
-description: >-
-  RomM (Rom Manager) is a web based retro roms manager integrated with IGDB.
-releaseNotes: >-
-  First Version
-developer: zurdi15
-website: https://github.com/zurdi15/romm
-repo: https://github.com/zurdi15/romm
-support: https://github.com/zurdi15/romm/issues
-port: 4004
-submitter: Mateo Silguero
-submission: https://github.com/getumbrel/umbrel-apps/pull/449
-gallery:
-  - 1.jpg
-  - 2.jpg
-  - 3.jpg
-dependencies: []
-path: ""
-defaultUsername: ""
-defaultPassword: ""manifestVersion: 1
 id: room
 category: Networking
 name: RomM
