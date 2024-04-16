@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: octobot
+category: finance
+name: OctoBot
+icon: https://pbs.twimg.com/profile_images/1735303459807641600/YpotDJ1S_400x400.jpg
+version: "1.0.8"
+tagline: Octobot
+description: >-
+  Crypto trade bot
+releaseNotes: ""
+developer: Drakkar-software
+website: https://github.com/Drakkar-software/OctoBot
+repo: https://github.com/Drakkar-software/OctoBot
+support: https://github.com/Drakkar-software/OctoBot/issues
+port: 5001
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/755
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
