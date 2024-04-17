@@ -1,19 +1,17 @@
-version: "3.7"
-
+version: '3.7'
 services:
   app_proxy:
     environment:
-      APP_HOST: romm_server_1
-      APP_PORT: 4004
-      PROXY_AUTH_ADD: "true"
+      APP_HOST: mateosilguero-romm_server_1
+      APP_PORT: 80
+      PROXY_AUTH_ADD: 'true'
 
   server:
-    image: zurdi15/romm:1.10
+    image: zurdi15/romm:1.10@sha256:d6c2eb5df269c2d7988f8a58c4df9a81115e8d4e5fd7902c3ce77709c540e3e2    
     volumes:
       - ${APP_DATA_DIR}/data:/romm
     restart: on-failure
-    ports:
-      - 4000:80
     environment:
       - CLIENT_ID=CLIENT_ID
       - CLIENT_SECRET=CLIENT_SECRET
+    container_name: mateosilguero-romm_server_1

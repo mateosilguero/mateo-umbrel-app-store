@@ -1,18 +1,20 @@
-version: "3.7"
-
+version: '3.7'
 services:
-
   app_proxy:
     environment:
-      APP_HOST: affine_web_1
+      APP_HOST: mateosilguero-affine_web_1
       APP_PORT: 3010
+    container_name: mateosilguero-affine_app_proxy_1
 
   web:
-    image: ghcr.io/toeverything/affine-graphql:stable@sha256:47c4dcef7354c99a29b71fcabf2b5361eb87e7c25a5141ad0ddb3b550305fa0a
+    image: >-
+      ghcr.io/toeverything/affine-graphql:stable@sha256:47c4dcef7354c99a29b71fcabf2b5361eb87e7c25a5141ad0ddb3b550305fa0a
     restart: on-failure
     init: true
     command:
-      ['sh', '-c', 'node ./scripts/self-host-predeploy && node ./dist/index.js']
+      - sh
+      - '-c'
+      - node ./scripts/self-host-predeploy && node ./dist/index.js
     environment:
       - NODE_OPTIONS="--import=./scripts/register.js"
       - AFFINE_CONFIG_PATH=/root/.affine/config
@@ -27,20 +29,29 @@ services:
     depends_on:
       - redis
       - db
+    container_name: mateosilguero-affine_web_1
 
   redis:
-    image: redis@sha256:e647cfe134bf5e8e74e620f66346f93418acfc240b71dd85640325cb7cd01402
+    image: >-
+      redis@sha256:e647cfe134bf5e8e74e620f66346f93418acfc240b71dd85640325cb7cd01402
     restart: on-failure
     volumes:
       - ${APP_DATA_DIR}/data/storage/redis:/data
     healthcheck:
-      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      test:
+        - CMD
+        - redis-cli
+        - '--raw'
+        - incr
+        - ping
       interval: 10s
       timeout: 5s
       retries: 5
+    container_name: mateosilguero-affine_redis_1
 
   db:
-    image: postgres@sha256:f58300ac8d393b2e3b09d36ea12d7d24ee9440440e421472a300e929ddb63460
+    image: >-
+      postgres@sha256:f58300ac8d393b2e3b09d36ea12d7d24ee9440440e421472a300e929ddb63460
     restart: on-failure
     environment:
       POSTGRES_USER: affine
@@ -50,7 +61,10 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data/storage/postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U affine']
+      test:
+        - CMD-SHELL
+        - pg_isready -U affine
       interval: 10s
       timeout: 5s
       retries: 5
+    container_name: mateosilguero-affine_db_1
