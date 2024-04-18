@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: mateosilguero-paaster
+category: files
+name: Paaster
+icon: https://camo.githubusercontent.com/377bc966d291a9ae95d077c55c35a4befaf84bd82c6186a8283c46154f577a46/68747470733a2f2f692e696d6775722e636f6d2f3853395350795a2e706e67
+version: "RELEASE.2024-04-06T05-26-02Z.fips"
+tagline: Paaster
+description: >-
+  Paaster is a secure and user-friendly pastebin application that prioritizes privacy and simplicity.
+releaseNotes: ""
+developer: WardPearce
+website: https://github.com/WardPearce/paaster
+repo: https://github.com/WardPearce/paaster
+support: https://github.com/WardPearce/paaster/issues
+port: 5005
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/755
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
