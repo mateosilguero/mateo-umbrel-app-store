@@ -8,7 +8,7 @@ services:
     container_name: mateosilguero-octobot_app_proxy_1
 
   octobot:
-    image: drakkarsoftware/octobot:stable
+    image: drakkarsoftware/octobot:1.0.10@sha256:39c179d3ad30477e35661e0277b567c1996fc3e21134c0068cc2f0538cb0be84
     labels:
       - traefik.enable=true
       - traefik.http.routers.octobot.rule=Host("localhost")

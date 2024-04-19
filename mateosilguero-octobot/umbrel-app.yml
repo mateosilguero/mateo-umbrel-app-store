@@ -3,7 +3,7 @@ id: mateosilguero-octobot
 category: finance
 name: OctoBot
 icon: https://pbs.twimg.com/profile_images/1735303459807641600/YpotDJ1S_400x400.jpg
-version: "1.0.8"
+version: "1.0.10"
 tagline: Octobot
 description: >-
   Crypto trade bot
