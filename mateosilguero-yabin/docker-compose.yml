@@ -18,6 +18,7 @@ services:
       - db
     networks:
       - yabin-network
+    container_name: mateosilguero-yabin_yabin_1
   db:
     container_name: mateosilguero-yabin-db
     restart: always
