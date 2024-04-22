@@ -1,9 +1,8 @@
-version: '3.3'
+version: '3.7'
 networks:
   yabin-network:
     name: yabin-network
-    ipam:
-      driver: default
+    driver: default
 services:
   app_proxy:
     environment:
