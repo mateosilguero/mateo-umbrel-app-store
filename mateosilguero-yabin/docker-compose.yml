@@ -1,7 +1,7 @@
 version: '3.7'
 networks:
   yabin-network:
-    name: yabin-network
+    external: true
     driver: default
 services:
   app_proxy:
@@ -11,8 +11,6 @@ services:
       PROXY_AUTH_ADD: 'true'
     container_name: mateosilguero-yabin_app_proxy_1
   yabin:
-    ports:
-      - '${PORT:-5005}:${PORT:-3000}'
     image: 'yureien/yabin:latest'
     depends_on:
       - db
