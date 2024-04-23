@@ -16,4 +16,6 @@ services:
     environment:
       MICROBIN_ENABLE_BURN_AFTER: true
       MICROBIN_QR: true
+      MICROBIN_HIGHLIGHTSYNTAX: true
+      MICROBIN_ENCRYPTION_SERVER_SIDE: true
     container_name: mateosilguero-microbin_server_1
