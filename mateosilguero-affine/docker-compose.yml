@@ -22,7 +22,7 @@ services:
       - DATABASE_URL=postgres://affine:affine@db:5432/affine
       - NODE_ENV=production
       - AFFINE_ADMIN_EMAIL=admin@umbrel.local
-      - AFFINE_ADMIN_PASSWORD=$APP_PASSWORD
+      - AFFINE_ADMIN_PASSWORD=umbrel
     volumes:
       - ${APP_DATA_DIR}/data/config:/root/.affine/config
       - ${APP_DATA_DIR}/data/storage/blob:/root/.affine/storage
