@@ -23,4 +23,3 @@ releaseNotes:
 dependencies: []
 path: ""
 defaultUsername: "admin@umbrel.local"
-deterministicPassword: true
