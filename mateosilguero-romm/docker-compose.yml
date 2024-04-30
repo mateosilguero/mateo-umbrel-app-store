@@ -3,15 +3,39 @@ services:
   app_proxy:
     environment:
       APP_HOST: mateosilguero-romm_server_1
-      APP_PORT: 80
+      APP_PORT: 8080
       PROXY_AUTH_ADD: 'true'
-
+    container_name: mateosilguero-romm_app_proxy_1
   server:
-    image: zurdi15/romm:1.10@sha256:d6c2eb5df269c2d7988f8a58c4df9a81115e8d4e5fd7902c3ce77709c540e3e2    
+    image: rommapp/romm:3.1.0@sha256:a14e28a0ffb26b9891e5f4234de476068edce4d5b8dd37f6a6092a5f1753e82b
     volumes:
-      - ${APP_DATA_DIR}/data:/romm
+      - ${APP_DATA_DIR}/data/resources:/romm/resources
+      - ${APP_DATA_DIR}/data/redis:/redis-data
+      - ${APP_DATA_DIR}/data/library:/romm/library
+      - ${APP_DATA_DIR}/data/assets:/romm/assets
+      - ${APP_DATA_DIR}/data/config:/romm/config
     restart: on-failure
+    depends_on:
+      - romm-db
     environment:
-      - CLIENT_ID=CLIENT_ID
-      - CLIENT_SECRET=CLIENT_SECRET
+      - DB_HOST=mateosilguero-romm_romm-db_1
+      - DB_NAME=romm
+      - DB_USER=romm-user
+      - DB_PASSWD=moneyprintergobrr
+      - ROMM_AUTH_SECRET_KEY=ROMM_AUTH_SECRET_KEY
+      - ROMM_AUTH_USERNAME=admin
+      - ROMM_AUTH_PASSWORD=admin
+      - IGDB_CLIENT_ID=IGDB_CLIENT_ID
+      - IGDB_CLIENT_SECRET=IGDB_CLIENT_SECRET
     container_name: mateosilguero-romm_server_1
+  romm-db:
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=umbrel
+      - MYSQL_DATABASE=romm
+      - MYSQL_USER=romm-user
+      - MYSQL_PASSWORD=moneyprintergobrr
+    volumes:
+      - ${APP_DATA_DIR}/data/mysql:/var/lib/mysql
+    container_name: mateosilguero-romm_romm-db_1
