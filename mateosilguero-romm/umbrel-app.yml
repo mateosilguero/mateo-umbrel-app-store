@@ -3,12 +3,12 @@ id: mateosilguero-romm
 category: files
 name: RomM
 icon: https://raw.githubusercontent.com/zurdi15/romm/a700aa98429b0ec96ec8d9d32ffa01c989d3569f/romm.svg
-version: "3.1.0"
+version: "3.2.0"
 tagline: Rom Manager.
 description: >-
   RomM (Rom Manager) is a web based retro roms manager integrated with IGDB.
 releaseNotes: >-
-  First Version
+  Bios files
 developer: zurdi15
 website: https://github.com/zurdi15/romm
 repo: https://github.com/zurdi15/romm
