@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: 'true'
     container_name: mateosilguero-romm_app_proxy_1
   server:
-    image: rommapp/romm:3.2.0@sha256:ff3d20f750f0007871fdba493321ee8156187f34ada7c043a58507699dfc6449
+    image: rommapp/romm:3.6.0@sha256:d4ca71e95e1100c84edd07b8a1e6891c4c4eb2e1d74b5dc73e4d7b64c3b44a12
     volumes:
       - ${APP_DATA_DIR}/data/resources:/romm/resources
       - ${APP_DATA_DIR}/data/redis:/redis-data
@@ -16,7 +16,9 @@ services:
       - ${APP_DATA_DIR}/data/config:/romm/config
     restart: on-failure
     depends_on:
-      - romm-db
+      romm-db:
+        condition: service_healthy
+        restart: true
     environment:
       - DB_HOST=mateosilguero-romm_romm-db_1
       - DB_NAME=romm
@@ -38,4 +40,11 @@ services:
       - MYSQL_PASSWORD=moneyprintergobrr
     volumes:
       - ${APP_DATA_DIR}/data/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
     container_name: mateosilguero-romm_romm-db_1
