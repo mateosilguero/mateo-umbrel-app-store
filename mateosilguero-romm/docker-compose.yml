@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: 'true'
     container_name: mateosilguero-romm_app_proxy_1
   server:
-    image: rommapp/romm:3.7.2@sha256:b3d593308f2d79a47c63219c20fdad1d6f17de2dee97cbad2aa748ef1d279484
+    image: rommapp/romm:3.7.0@sha256:c8ef636c63e264c106a0e8ab6580dd8b76872a52f18d08ea29e514b988cf2caf
     volumes:
       - ${APP_DATA_DIR}/data/resources:/romm/resources
       - ${APP_DATA_DIR}/data/redis:/redis-data
