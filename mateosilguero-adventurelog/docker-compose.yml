@@ -13,7 +13,7 @@ services:
     container_name: adventurelog-frontend
     restart: unless-stopped
     environment:
-      - PUBLIC_SERVER_URL=http://server:7001
+      - PUBLIC_SERVER_URL=http://server:8000
       - ORIGIN=https://adventure.whare
       - BODY_SIZE_LIMIT=Infinity
     ports:
