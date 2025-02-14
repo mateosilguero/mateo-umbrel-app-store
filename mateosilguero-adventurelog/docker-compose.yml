@@ -1,0 +1,59 @@
+version: '3.7'
+services:
+  app_proxy:
+    environment:
+      APP_HOST: mateosilguero-adventurelog_web_1
+      APP_PORT: 8080
+      PROXY_AUTH_ADD: 'true'
+    container_name: mateosilguero-adventurelog_app_proxy_1
+
+  web:
+    image: ghcr.io/seanmorley15/adventurelog-frontend:latest
+    platform: linux/arm64
+    container_name: adventurelog-frontend
+    restart: unless-stopped
+    environment:
+      - PUBLIC_SERVER_URL=http://server:8000
+      - ORIGIN=https://adventure.whare
+      - BODY_SIZE_LIMIT=Infinity
+    ports:
+      - "7000:3000"
+    depends_on:
+      - server
+
+  db:
+    image: tobi312/rpi-postgresql-postgis:13-3.3-alpine-arm
+    platform: linux/arm64
+    container_name: adventurelog-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: adventure
+      POSTGRES_PASSWORD: adventure
+    volumes:
+      - ${APP_DATA_DIR}/postgresql/data:/var/lib/postgresql/data/
+
+  server:
+    image: ghcr.io/seanmorley15/adventurelog-backend:latest
+    platform: linux/arm64
+    container_name: adventurelog-backend
+    restart: unless-stopped
+    environment:
+      - PGHOST=db
+      - PGDATABASE=database
+      - PGUSER=adventure
+      - PGPASSWORD=adventure
+      - SECRET_KEY=+gHIbzNHb9mEYxzF5oP8yxpzRbOQtBbe/yhrZu4qh019NUZ1
+      - DJANGO_ADMIN_USERNAME=adventure
+      - DJANGO_ADMIN_PASSWORD=adventure
+      - DJANGO_ADMIN_EMAIL=admin@admin.com
+      - PUBLIC_URL='http://localhost:8016'
+      - CSRF_TRUSTED_ORIGINS=https://api.adventurelog.app,https://adventurelog.app,http://localhost:7000,http://192.168.0.185:7000,https://adventure.whare
+      - DEBUG=False
+      - FRONTEND_URL='https://adventure.whare'
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - ${APP_DATA_DIR}/media:/code/media/
