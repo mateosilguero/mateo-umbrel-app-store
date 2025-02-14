@@ -52,7 +52,7 @@ services:
       - DEBUG=False
       - FRONTEND_URL='https://adventure.whare'
     ports:
-      - "7001:8000"
+      - "8000:8000"
     depends_on:
       - db
     volumes:
