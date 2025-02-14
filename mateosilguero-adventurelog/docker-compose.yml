@@ -3,7 +3,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: mateosilguero-adventurelog_web_1
-      APP_PORT: 8080
+      APP_PORT: 3000
       PROXY_AUTH_ADD: 'true'
     container_name: mateosilguero-adventurelog_app_proxy_1
 
@@ -16,8 +16,6 @@ services:
       - PUBLIC_SERVER_URL=http://server:8000
       - ORIGIN=https://adventure.whare
       - BODY_SIZE_LIMIT=Infinity
-    ports:
-      - "7000:3000"
     depends_on:
       - server
 
@@ -51,8 +49,6 @@ services:
       - CSRF_TRUSTED_ORIGINS=https://api.adventurelog.app,https://adventurelog.app,http://localhost:7000,http://192.168.0.185:7000,https://adventure.whare
       - DEBUG=False
       - FRONTEND_URL='https://adventure.whare'
-    ports:
-      - "8000:8000"
     depends_on:
       - db
     volumes:
