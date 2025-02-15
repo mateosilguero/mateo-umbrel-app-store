@@ -13,7 +13,7 @@ developer: szabodanika
 website: https://microbin.eu/
 repo: https://github.com/szabodanika/microbin
 support: https://github.com/szabodanika/microbin/issues
-port: 7000
+port: 7001
 submitter: Mateo Silguero
 submission: https://github.com/getumbrel/umbrel-apps/pull/449
 gallery:
