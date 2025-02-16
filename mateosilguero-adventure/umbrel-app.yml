@@ -3,7 +3,7 @@ id: mateosilguero-adventure
 category: files
 name: AdventureLog
 icon: https://raw.githubusercontent.com/seanmorley15/AdventureLog/refs/heads/main/brand/adventurelog.png
-version: "2.0.4"
+version: "0.8.0-beta"
 tagline: File sharing made easy
 description: >-
   MicroBin is a feature rich, performant and secure text and file sharing web application, a "paste bin".
@@ -13,7 +13,7 @@ developer: szabodanika
 website: https://microbin.eu/
 repo: https://github.com/szabodanika/microbin
 support: https://github.com/szabodanika/microbin/issues
-port: 7001
+port: 7000
 submitter: Mateo Silguero
 submission: https://github.com/getumbrel/umbrel-apps/pull/449
 gallery:

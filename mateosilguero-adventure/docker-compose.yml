@@ -7,12 +7,12 @@ services:
       PROXY_AUTH_ADD: 'true'
 
   web:
-    image: ghcr.io/seanmorley15/adventurelog-frontend:latest
+    image: ghcr.io/seanmorley15/adventurelog-frontend:beta
     platform: linux/arm64
     restart: unless-stopped
     environment:
       - PUBLIC_SERVER_URL=http://server:8001
-      - ORIGIN=https://adventure.whare
+      - ORIGIN=http://localhost:7000
       - BODY_SIZE_LIMIT=Infinity
     ports:
       - "7000:3000"
@@ -31,7 +31,7 @@ services:
       - ${APP_DATA_DIR}/postgresql/data:/var/lib/postgresql/data/
 
   server:
-    image: ghcr.io/seanmorley15/adventurelog-backend:latest
+    image: ghcr.io/seanmorley15/adventurelog-backend:beta
     platform: linux/arm64
     restart: unless-stopped
     environment:
@@ -44,7 +44,7 @@ services:
       - DJANGO_ADMIN_PASSWORD=adventure
       - DJANGO_ADMIN_EMAIL=admin@admin.com
       - PUBLIC_URL='http://localhost:8016'
-      - CSRF_TRUSTED_ORIGINS=https://api.adventurelog.app,https://adventurelog.app,http://localhost:7000,http://192.168.0.185:7000,https://adventure.whare
+      - CSRF_TRUSTED_ORIGINS=https://api.adventurelog.app,https://adventurelog.app,http://localhost:7000,http://192.168.1.5:7000,https://adventure.whare
       - DEBUG=False
       - FRONTEND_URL='https://adventure.whare'
     ports:
