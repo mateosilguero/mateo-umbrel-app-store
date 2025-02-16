@@ -2,29 +2,26 @@ version: '3.7'
 services:
   app_proxy:
     environment:
-      APP_HOST: mateosilguero-adventurelog_web_1
+      APP_HOST: mateosilguero-adventure_web_1
       APP_PORT: 8080
       PROXY_AUTH_ADD: 'true'
-    container_name: mateosilguero-adventurelog_app_proxy_1
 
   web:
     image: ghcr.io/seanmorley15/adventurelog-frontend:latest
     platform: linux/arm64
-    container_name: adventurelog-frontend
     restart: unless-stopped
     environment:
       - PUBLIC_SERVER_URL=http://server:8001
       - ORIGIN=https://adventure.whare
       - BODY_SIZE_LIMIT=Infinity
     ports:
-      - "7001:3000"
+      - "7000:3000"
     depends_on:
       - server
 
   db:
     image: tobi312/rpi-postgresql-postgis:13-3.3-alpine-arm
     platform: linux/arm64
-    container_name: adventurelog-db
     restart: unless-stopped
     environment:
       POSTGRES_DB: database
@@ -36,7 +33,6 @@ services:
   server:
     image: ghcr.io/seanmorley15/adventurelog-backend:latest
     platform: linux/arm64
-    container_name: adventurelog-backend
     restart: unless-stopped
     environment:
       - PGHOST=db
