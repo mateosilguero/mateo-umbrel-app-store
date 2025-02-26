@@ -8,7 +8,7 @@ services:
     container_name: mateosilguero-octobot_app_proxy_1
 
   octobot:
-    image: drakkarsoftware/octobot:2.0.7@sha256:6b2e856ae68c5ce724bbad1091aafed89abc7c3cffbbbfc229bd22bcabba3132
+    image: drakkarsoftware/octobot:2.0.8@sha256:4adcc77c475ff37af54f8bdc094f8fd5413dedeb847ff1a9c466e506b9dc42cd
     volumes:
       - ${APP_DATA_DIR}/data/logs:/octobot/logs
       - ${APP_DATA_DIR}/data/backtesting:/octobot/backtesting
