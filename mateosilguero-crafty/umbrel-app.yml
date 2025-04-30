@@ -3,7 +3,7 @@ id: mateosilguero-crafty
 category: files
 name: crafty
 icon: https://docs.craftycontrol.com/img/favicon.ico
-version: "4.4.7"
+version: "4.4.8"
 tagline: Minecraft server manager
 description: >-
   A Web based GUI for Minecraft Server administration.
@@ -13,7 +13,7 @@ developer: szabodanika
 website: https://craftycontrol.com/
 repo: https://gitlab.com/crafty-controller/crafty-4
 support: https://gitlab.com/crafty-controller/crafty-4
-port: 8111
+port: 8112
 submitter: Mateo Silguero
 submission: https://github.com/getumbrel/umbrel-apps/pull/449
 gallery:

@@ -3,7 +3,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: mateosilguero-crafty_server_1
-      APP_PORT: 8000
+      APP_PORT: 8111
       PROXY_AUTH_ADD: 'false'
     container_name: mateosilguero-crafty_app_proxy_1
   server:
@@ -12,7 +12,7 @@ services:
     environment:
       - TZ=Etc/UTC
     ports:
-      - "8000:8000"  # HTTP
+      - "8111:8000"  # HTTP
       - "8443:8443"  # HTTPS
       - "8123:8123"  # DYNMAP
       - "25500-25600:25500-25600"  # MC SERV PORT RANGE
