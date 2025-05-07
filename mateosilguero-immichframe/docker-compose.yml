@@ -10,7 +10,8 @@ services:
     image: ghcr.io/immichframe/immichframe:latest
     restart: always
     env_file:
-      - .env
+      - ${APP_DATA_DIR}/.env
     environment:
       TZ: "America/Argentina/Buenos_Aires"
+      ImmichServerUrl: "http://${DEVICE_DOMAIN_NAME}:2283"
     container_name: mateosilguero-immichframe_server_1
