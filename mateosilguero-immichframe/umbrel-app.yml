@@ -1,0 +1,27 @@
+manifestVersion: 1
+id: mateosilguero-immichframe
+category: files
+name: immichframe
+icon: https://immichframe.online/img/immich-frame-logo.svg
+version: "1.0.24.0"
+tagline: Immich images display
+description: >-
+  An awesome way to display your photos as a digital photo frame.
+releaseNotes: >-
+  First Version
+developer: immichFrame
+website: https://immichframe.online/
+repo: https://github.com/immichFrame/ImmichFrame
+support: https://github.com/immichFrame/ImmichFrame
+port: 8118
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/449
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies:
+  - immich
+path: ""
+defaultUsername: ""
+defaultPassword: ""
