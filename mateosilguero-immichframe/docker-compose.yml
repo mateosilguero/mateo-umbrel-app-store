@@ -13,5 +13,5 @@ services:
       - ${APP_DATA_DIR}/.env
     environment:
       TZ: "America/Argentina/Buenos_Aires"
-      ImmichServerUrl: "http://${DEVICE_DOMAIN_NAME}:2283"
+      ImmichServerUrl: "http://immich_server_1:2283"
     container_name: mateosilguero-immichframe_server_1
