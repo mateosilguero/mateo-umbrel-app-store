@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: 'false'
     container_name: mateosilguero-immichframe_app_proxy_1
   server:
-    image: ghcr.io/immichframe/immichframe:latest
+    image: ghcr.io/immichframe/immichframe:v1.0.25.0
     restart: always
     env_file:
       - ${APP_DATA_DIR}/.env
