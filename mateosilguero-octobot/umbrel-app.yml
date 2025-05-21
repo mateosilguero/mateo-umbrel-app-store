@@ -12,7 +12,7 @@ developer: Drakkar-software
 website: https://github.com/Drakkar-software/OctoBot
 repo: https://github.com/Drakkar-software/OctoBot
 support: https://github.com/Drakkar-software/OctoBot/issues
-port: 5001
+port: 5005
 submitter: Mateo Silguero
 submission: https://github.com/getumbrel/umbrel-apps/pull/755
 gallery:
