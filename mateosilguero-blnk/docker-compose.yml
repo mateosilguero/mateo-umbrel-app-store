@@ -7,86 +7,87 @@ services:
       APP_PORT: 5001 # map
       PROXY_AUTH_ADD: 'false'
     container_name: mateosilguero-blnk_app_proxy_1
-  server:
-    image: jerryenebeli/blnk:0.10.2
-    container_name: server
-    restart: on-failure
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - "blnk migrate up && blnk start"
-    environment:
-      TZ: ${TZ:-Etc/UTC}
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
-    depends_on:
-      - redis
-      - postgres
-      - jaeger
-    volumes:
-      - ${APP_DATA_DIR}/blnk.json:/blnk.json
+  # not working on arm64 yet
+  # server:
+  #   image: jerryenebeli/blnk:0.10.2
+  #   container_name: server
+  #   restart: on-failure
+  #   entrypoint: ["/bin/sh", "-c"]
+  #   command:
+  #     - "blnk migrate up && blnk start"
+  #   environment:
+  #     TZ: ${TZ:-Etc/UTC}
+  #     OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #     - jaeger
+  #   volumes:
+  #     - ${APP_DATA_DIR}/blnk.json:/blnk.json
 
-  worker:
-    image: jerryenebeli/blnk:0.10.2
-    container_name: worker
-    restart: on-failure
-    entrypoint: ["blnk", "workers"]
-    environment:
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
-    depends_on:
-      - redis
-      - postgres
-      - jaeger
-    volumes:
-      - ${APP_DATA_DIR}/blnk.json:/blnk.json
+  # worker:
+  #   image: jerryenebeli/blnk:0.10.2
+  #   container_name: worker
+  #   restart: on-failure
+  #   entrypoint: ["blnk", "workers"]
+  #   environment:
+  #     OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #     - jaeger
+  #   volumes:
+  #     - ${APP_DATA_DIR}/blnk.json:/blnk.json
 
-  redis:
-    image: redis:7.2.4
-    container_name: redis
+  # redis:
+  #   image: redis:7.2.4
+  #   container_name: redis
 
-  postgres:
-    image: postgres:16
-    container_name: postgres
-    restart: on-failure
-    ports:
-      - "5432:5432"
-    environment:
-      TZ: ${TZ:-Etc/UTC}
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: ${POSTGRES_DB:-blnk}
-    volumes:
-      - ${APP_DATA_DIR}/data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-postgres}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # postgres:
+  #   image: postgres:16
+  #   container_name: postgres
+  #   restart: on-failure
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     TZ: ${TZ:-Etc/UTC}
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+  #     POSTGRES_DB: ${POSTGRES_DB:-blnk}
+  #   volumes:
+  #     - ${APP_DATA_DIR}/data:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-postgres}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
 
-  typesense:
-    image: typesense/typesense:0.23.1
-    container_name: typesense
-    command:
-      ["--data-dir", "/data", "--api-key=blnk-api-key", "--listen-port", "8108"]
-    volumes:
-      - ${APP_DATA_DIR}/data:/data
-    logging:
-      driver: "none"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8108/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+  # typesense:
+  #   image: typesense/typesense:0.23.1
+  #   container_name: typesense
+  #   command:
+  #     ["--data-dir", "/data", "--api-key=blnk-api-key", "--listen-port", "8108"]
+  #   volumes:
+  #     - ${APP_DATA_DIR}/data:/data
+  #   logging:
+  #     driver: "none"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8108/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
 
-  jaeger:
-    image: jaegertracing/all-in-one:latest
-    container_name: jaeger
-    ports:
-      - "16686:16686" # Jaeger UI
-      - "4317:4317" # OTLP gRPC
-      - "4318:4318" # OTLP HTTP
-    environment:
-      - COLLECTOR_OTLP_ENABLED=true
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:16686"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+  # jaeger:
+  #   image: jaegertracing/all-in-one:latest
+  #   container_name: jaeger
+  #   ports:
+  #     - "16686:16686" # Jaeger UI
+  #     - "4317:4317" # OTLP gRPC
+  #     - "4318:4318" # OTLP HTTP
+  #   environment:
+  #     - COLLECTOR_OTLP_ENABLED=true
+  #   healthcheck:
+  #     test: ["CMD", "wget", "--spider", "http://localhost:16686"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
