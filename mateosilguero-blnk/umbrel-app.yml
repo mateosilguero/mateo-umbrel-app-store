@@ -1,0 +1,26 @@
+manifestVersion: 1
+id: mateosilguero-blnk
+category: finance
+name: blnk
+icon: https://cdn.prod.website-files.com/66cf18ef520ae15fbc17fa47/67c99f58bbb13db50240dda9_blnk-logo.svg
+version: "0.10.2"
+tagline: Blnk Finance
+description: >-
+  Blnk is an open-source financial ledger server that enables you build financial products easily.
+releaseNotes: >-
+  First Version
+developer: jerryenebeli
+website: https://www.blnkfinance.com/
+repo: https://github.com/blnkfinance/blnk
+support: https://github.com/blnkfinance/blnk
+port: 5010
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/449
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
