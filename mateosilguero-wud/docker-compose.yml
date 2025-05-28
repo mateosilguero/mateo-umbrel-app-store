@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  app_proxy:
+    environment:
+      APP_HOST: mateosilguero-wud_whatsupdocker_1
+      APP_PORT: 3000
+      PROXY_AUTH_ADD: 'true'
+    container_name: mateosilguero-wud_app_proxy_1
+
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

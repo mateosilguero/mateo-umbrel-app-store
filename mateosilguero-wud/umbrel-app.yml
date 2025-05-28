@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: mateosilguero-wud
+category: developer
+name: WUD
+icon: https://getwud.github.io/wud/assets/wud-logo.svg
+version: "8.0.1"
+tagline: WUD
+description: >-
+  Keep your containers up-to-date!
+releaseNotes: ""
+developer: getwud
+website: https://getwud.github.io/wud
+repo: https://github.com/getwud/wud
+support: https://github.com/getwud/wud/issues
+port: 3050
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/755
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
