@@ -9,6 +9,6 @@ services:
 
   whatsupdocker:
     image: getwud/wud
-    container_name: wud
+    container_name: mateosilguero-wud_whatsupdocker_1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
