@@ -42,7 +42,6 @@ services:
   # image: prebuilt (docker compose pull). build: from source (docker compose up --build).
   api:
     image: registry.gitlab.com/duartesantos8/opengym/api:latest
-    build: ${APP_DATA_DIR}/api
     restart: unless-stopped
     env_file: ${APP_DATA_DIR}/.env
     environment:
