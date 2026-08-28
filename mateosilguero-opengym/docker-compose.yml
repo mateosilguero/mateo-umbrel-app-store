@@ -56,9 +56,6 @@ services:
   # and the exercise media from the shared volume. Single origin for passkeys.
   opengym:
     image: registry.gitlab.com/duartesantos8/opengym/web:latest
-    build:
-      context: ${APP_DATA_DIR}
-      dockerfile: web/Dockerfile
     restart: unless-stopped
     depends_on:
       media:
