@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: mateosilguero-opengym
+category: social
+name: openGym
+icon: https://opengym.duarte-santos.ch/icon-180.png
+version: "1.2.11"
+tagline: opengym
+description: >-
+  A free, open-source gym and body-weight tracker. No subscription, no account required, and no telemetry — not now, not later.
+releaseNotes: ""
+developer: DuarteSantos8
+website: https://opengym.duarte-santos.ch/
+repo: https://gitlab.com/DuarteSantos8/opengym/-/tree/main?ref_type=heads
+support: https://gitlab.com/DuarteSantos8/opengym/-/tree/main?ref_type=heads
+port: 4001
+submitter: Mateo Silguero
+submission: https://github.com/getumbrel/umbrel-apps/pull/755
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
