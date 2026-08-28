@@ -1,23 +1,19 @@
 name: opengym
-
 services:
   app_proxy:
     environment:
       APP_HOST: mateosilguero-opengym_opengym_1
-      APP_PORT: 8080
-      PROXY_AUTH_ADD: 'true'
+      APP_PORT: 8081
+      PROXY_AUTH_ADD: 'false'
     container_name: mateosilguero-opengym_app_proxy_1
-  # One-time: download the exercise images + GIFs into ./media (skipped if already there).
-  # ~140 MB, from github.com/hasaneyldrm/exercises-dataset. That dataset is MIT for the
-  # metadata and instruction text, but the images and GIFs are © Gym visual
-  # (https://gymvisual.com/) and are used under the dataset's terms — openGym neither
-  # redistributes nor relicenses them. See NOTICE.md.
   media:
     image: alpine/git
     volumes:
       - ${APP_DATA_DIR}/media/img:/out/img
       - ${APP_DATA_DIR}/media/gif:/out/gif
-    entrypoint: ["/bin/sh", "-c"]
+    entrypoint:
+      - /bin/sh
+      - '-c'
     command:
       - |
         if [ -z "$$(ls -A /out/img 2>/dev/null)" ]; then
@@ -36,24 +32,18 @@ services:
         else
           echo "✓ Exercise media already present — skipping download."
         fi
-    restart: "no"
-
-  # Passkey auth + per-user data (Node, no framework).
-  # image: prebuilt (docker compose pull). build: from source (docker compose up --build).
+    restart: 'no'
+    container_name: mateosilguero-opengym_media_1
   api:
     image: registry.gitlab.com/duartesantos8/opengym/api:latest
     restart: unless-stopped
     env_file: ${APP_DATA_DIR}/.env
     environment:
-      # The port the API listens on. web proxies to this same value, so the two
-      # cannot drift — change it in .env and both follow.
       - PORT=${PORT:-3000}
       - DATA_DIR=/data
     volumes:
-      - ${APP_DATA_DIR}/data:/data         # users, passkeys, per-user state, session secret — BACK THIS UP
-
-  # Builds the React frontend (multi-stage) and serves it, proxying /api → api
-  # and the exercise media from the shared volume. Single origin for passkeys.
+      - ${APP_DATA_DIR}/data:/data
+    container_name: mateosilguero-opengym_api_1
   opengym:
     image: registry.gitlab.com/duartesantos8/opengym/web:latest
     restart: unless-stopped
@@ -62,18 +52,14 @@ services:
         condition: service_completed_successfully
       api:
         condition: service_started
-    ports:
-      - "${WEB_PORT:-8080}:${NGINX_PORT:-80}"
-    # nginx renders its config at start-up from these (web/nginx.conf.template),
-    # so the API service does not have to be called `api`. Defaults are the old
-    # hardcoded values, so an existing .env and an existing stack are unaffected.
     environment:
-      - NGINX_PORT=${NGINX_PORT:-80}
+      - NGINX_PORT=${NGINX_PORT:-8081}
       - BACKEND=${BACKEND:-api}
       - PORT=${PORT:-3000}
-      # Empty drops the CF-Connecting-IP header, so a direct client cannot forge the address
-      # the activity log records. Cloudflare users set CF_CONNECTING_IP=$$http_cf_connecting_ip.
       - CF_CONNECTING_IP=${CF_CONNECTING_IP:-}
+    expose:
+      - 8081
     volumes:
       - ${APP_DATA_DIR}/media/img:/usr/share/nginx/html/img:ro
       - ${APP_DATA_DIR}/media/gif:/usr/share/nginx/html/gif:ro
+    container_name: mateosilguero-opengym_opengym_1
