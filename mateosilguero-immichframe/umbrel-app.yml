@@ -2,7 +2,7 @@ manifestVersion: 1
 id: mateosilguero-immichframe
 category: files
 name: immichframe
-icon: https://immichframe.online/img/immich-frame-logo.svg
+icon: https://raw.githubusercontent.com/immichFrame/ImmichFrame/main/design/AppIcon.png
 version: "1.0.39.0"
 tagline: Immich images display
 description: >-
