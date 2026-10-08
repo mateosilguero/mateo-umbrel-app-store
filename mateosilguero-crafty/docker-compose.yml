@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: 'false'
     container_name: mateosilguero-crafty_app_proxy_1
   server:
-    image: arcadiatechnology/crafty-4:4.4.7@sha256:a2a083675b1e6442599e31dba230f2242c9f9c713e360a507ee7df205ab4689f
+    image: arcadiatechnology/crafty-4:4.11.0@sha256:7b6e87514259549647e15ceeaf73d238792e6d77e2c79fc744d5badc8d6e997c
     restart: always
     environment:
       - TZ=Etc/UTC

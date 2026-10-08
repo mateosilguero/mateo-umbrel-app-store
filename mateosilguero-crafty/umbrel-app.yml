@@ -3,7 +3,7 @@ id: mateosilguero-crafty
 category: files
 name: crafty
 icon: https://docs.craftycontrol.com/img/favicon.ico
-version: "4.4.8"
+version: "4.11.0"
 tagline: Minecraft server manager
 description: >-
   A Web based GUI for Minecraft Server administration.
